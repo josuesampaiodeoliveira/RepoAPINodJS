@@ -54,18 +54,19 @@
                 <span id="mensagem_erro"></span>
             </div>
         </div>
-        <div class="container tamanho-conteudo">
+        <div class="container ">
             <div class="card medio">
                 <h2>Bem-vindo!</h2>
                 <div class="formulario">
-
-                    <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-
                     <span class="tipo_campo">Nome:</span>
-                    <input id="nome_input" type="text" placeholder="Seu nome">
+                    <input id="nome_input" type="text" placeholder="Seu Nome">
+
+
+                    <span class="tipo_campo">CPF:</span>
+                    <input id="cpf_input" type="text" placeholder="Seu cpf">
+
+                    <span class="tipo_campo">telefone:</span>
+                    <input id="telefone_input" type="text" placeholder="Seu telefone">
 
                     <span class="tipo_campo">E-mail:</span>
                     <input id="email_input" type="text" placeholder="meuemail@provedor.com">
@@ -107,9 +108,9 @@
     function cadastrar() {
         aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
+        var cpfvar = cpf_input.value;
+        var telefonevar = telefone_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
@@ -145,16 +146,16 @@
             setInterval(sumirMensagem, 5000)
         }
 
-        // Enviando o valor da nova input
+
         fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
+                cpfServer: cpfvar,
+                telefoneServer: telefonevar,
                 emailServer: emailVar,
                 senhaServer: senhaVar
             })
